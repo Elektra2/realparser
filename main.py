@@ -222,7 +222,11 @@ while not data['error']:
             if(sku > 999999 and sku < 1000000000):
                 card = sku_info(sku)
                 if card != None:
-                    get_reels(str(sku))
+                    print(sku)
+                    try:
+                        get_reels(str(sku))
+                    except:
+                        print(sku.'Error')
 
     offset += 100
     data = loads(requests.get(f'https://seller-weekly-report.wildberries.ru/ns/trending-searches/suppliers-portal-analytics/api?itemsPerPage=100&offset={offset}&period=month&query=&sort=desc',
