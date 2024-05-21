@@ -226,7 +226,7 @@ while not data['error']:
                     try:
                         get_reels(str(sku))
                     except:
-                        print(sku.'Error')
+                        print(sku, 'Error')
 
     offset += 100
     data = loads(requests.get(f'https://seller-weekly-report.wildberries.ru/ns/trending-searches/suppliers-portal-analytics/api?itemsPerPage=100&offset={offset}&period=month&query=&sort=desc',
