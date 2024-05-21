@@ -181,25 +181,24 @@ def get_reels(SEARCH_QUERY):
 
     paging_token = 4
     while response["has_more"]:
-        json = session.get("https://i.instagram.com/api/v1/fbsearch/reels_serp", params={
-            "search_surface": "clips_serp_page",
-            "reels_page_index": 11,
-            "timezone_offset": 10800,
-            "has_more_reels": response["has_more"],
-            "count": 30,
-            "query": SEARCH_QUERY,
-            "reels_max_id": response["reels_max_id"],
-            "next_max_id": response["reels_max_id"],
-            "rank_token": response["rank_token"],
-            "page_index": response["page_index"],
-            "page_token": response["reels_max_id"],
-            "paging_token": "{\"total_num_items\":" + str(paging_token) + "}"
-        }).json()
-
         try:
+            json = session.get("https://i.instagram.com/api/v1/fbsearch/reels_serp", params={
+                "search_surface": "clips_serp_page",
+                "reels_page_index": 11,
+                "timezone_offset": 10800,
+                "has_more_reels": response["has_more"],
+                "count": 30,
+                "query": SEARCH_QUERY,
+                "reels_max_id": response["reels_max_id"],
+                "next_max_id": response["reels_max_id"],
+                "rank_token": response["rank_token"],
+                "page_index": response["page_index"],
+                "page_token": response["reels_max_id"],
+                "paging_token": "{\"total_num_items\":" + str(paging_token) + "}"
+            }).json()
             response = reels_response_parse(json, SEARCH_QUERY)
         except:
-            print(json)
+            response['has_more'] = False
 
         paging_token += 4
 
