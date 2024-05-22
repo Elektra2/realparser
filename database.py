@@ -46,11 +46,12 @@ class Database:
 
     def add_reel(self, prompt, reel):
         self.cursor.execute(sql.SQL("""
-            INSERT INTO reels (prompt, short_url, likes, comments, reshare, author_id, video_urls)
-            VALUES (%s, %s, %s, %s, %s, %s, %s)
+            INSERT INTO reels (prompt, short_url, likes, comments, reshare, author_id, video_urls, views)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
             ON CONFLICT (short_url)
             DO UPDATE SET
                 likes = excluded.likes,
+                views = excluded.views,
                 comments = excluded.comments,
                 reshare = excluded.reshare,
                 author_id = excluded.author_id,
@@ -62,19 +63,21 @@ class Database:
                 reel["comments"],
                 reel["reshare"],
                 int(reel["user"]["id"]),
-                dumps(reel["video_urls"])))
+                dumps(reel["video_urls"]),
+                reel["views"]))
         self._connection.commit()
 
     def add_sku(self, id, sku):
         self.cursor.execute(sql.SQL("""
-            INSERT INTO skus (sku, name, brand, category, subcategory, rating, feedbacks, price, seller_id)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            INSERT INTO skus (sku, name, brand, category, subcategory, rating, feedbacks, price, seller_id, request_count)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             ON CONFLICT (sku)
             DO UPDATE SET
                 name = excluded.name,
                 feedbacks = excluded.feedbacks,
                 rating = excluded.rating,
-                price = excluded.price
+                price = excluded.price,
+                request_count = excluded.request_count
             """), (
                 id,
                 sku['name'],
@@ -84,7 +87,8 @@ class Database:
                 sku['rating'],
                 sku['feedbacks'],
                 sku['price'],
-                sku['seller_id']))
+                sku['seller_id'],
+                sku['request_count']))
         self._connection.commit()
 
     def add_seller(self, id, seller):
