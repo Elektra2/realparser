@@ -110,6 +110,9 @@ class Database:
         self.cursor.execute("SELECT COUNT(*) FROM reels WHERE short_url = %s", (reel_url,))
         return self.cursor.fetchone()[0] > 0
 
+    def is_sku_added(self, sku):
+        self.cursor.execute(f"SELECT COUNT(*) FROM skus WHERE sku = '{sku}'")
+        return self.cursor.fetchone()[0] > 0
 
     def disconnect(self):
         self.cursor.close()

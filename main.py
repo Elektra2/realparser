@@ -147,7 +147,7 @@ def reels_response_parse(response, SEARCH_QUERY):
         }
 
         user_info.update(get_additional_user_info(clip["media"]["user"]["id"]))
-        #sleep(1)
+        sleep(1)
         user_info.update(get_last_user_publications_info(clip["media"]["user"]["id"]))
 
         result_object = {
@@ -163,7 +163,7 @@ def reels_response_parse(response, SEARCH_QUERY):
         database.add_author(result_object["user"])
         database.add_reel(SEARCH_QUERY, result_object)
 
-        #sleep(1)
+        sleep(1)
         parsed_items += 1
 
     return {
@@ -207,14 +207,16 @@ def get_reels(SEARCH_QUERY):
         paging_token += 4
 
 start = 0
-end = 5000
+end = 90000
 with open('requests.csv',encoding='utf-8-sig') as file:
     rows = list(csv.reader(file))
     for i in range(start,end):
         sku,count = rows[i][0].split(';')[0], rows[i][0].split(';')[1]
-        sku = int(sku)
-        if(sku > 999999 and sku < 1000000000):
-            card = sku_info(sku=sku,count=count)
-            if card != None:
-                print(f'Добавили {sku}')
-                get_reels(str(sku))
+        if(int(sku) > 999999 and int(sku) < 1000000000):
+            if not database.is_sku_added(sku):
+                card = sku_info(sku=sku,count=count)
+                if card != None:
+                    print(f'Добавили {sku}')
+                    get_reels(str(sku))
+        else:
+            print(f'{sku} в таблице')
