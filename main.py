@@ -115,7 +115,9 @@ def get_last_user_publications_info(user_id):
 
 def reels_response_parse(response, SEARCH_QUERY):
     global parsed_items
-
+    if len(response["reels_serp_modules"]) == 0: 
+        response["has_more"] = False
+        return response
     for clip in response["reels_serp_modules"][0]["clips"]:
         # DEBUG
         print("Получаем информацию о {}, пользователь: {}. Собрано: {}".format("https://www.instagram.com/reels/" + clip["media"]["code"], clip["media"]["user"]["username"], parsed_items))
@@ -222,11 +224,8 @@ while not data['error']:
             if(sku > 999999 and sku < 1000000000):
                 card = sku_info(sku)
                 if card != None:
-                    print(sku)
-                    try:
-                        get_reels(str(sku))
-                    except:
-                        print(sku, 'Error')
+                    print(f'Добавили {sku}')
+                    get_reels(str(sku))
 
     offset += 100
     data = loads(requests.get(f'https://seller-weekly-report.wildberries.ru/ns/trending-searches/suppliers-portal-analytics/api?itemsPerPage=100&offset={offset}&period=month&query=&sort=desc',
