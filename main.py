@@ -92,9 +92,8 @@ def get_last_user_publications_info(user_id):
     }, headers={
         "content-type": "application/x-www-form-urlencoded; charset=UTF-8"
     })
-
     # Костыль, но он тут нужен =) Кривой ответ от Instagram
-    json = loads(response.text.replace("\n{\"num_results\"", "%SECOND_JSON%{\"num_results\"").split("%SECOND_JSON%")[1])
+    json = loads(response.text.replace("\n{\"profile_grid_items\"", "%SECOND_JSON%{\"profile_grid_items\"").split("%SECOND_JSON%")[-1])
 
     item_counter = 0
     likes_count_last_posts = 0
@@ -218,5 +217,5 @@ with open('requests.csv',encoding='utf-8-sig') as file:
                 if card != None:
                     print(f'Добавили {sku}')
                     get_reels(str(sku))
-        else:
-            print(f'{sku} в таблице')
+            else:
+                print(f'{sku} в таблице')
