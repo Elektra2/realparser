@@ -215,7 +215,10 @@ with open('requests.csv',encoding='utf-8-sig') as file:
         sku,count = rows[i][0].split(';')[0], rows[i][0].split(';')[1]
         if(int(sku) > 999999 and int(sku) < 1000000000):
             if not database.is_sku_added(sku):
-                card = sku_info(sku=sku,count=count)
+                try:
+                    card = sku_info(sku=sku,count=count)
+                except Exception as e:
+                    continue
                 if card != None:
                     print(f'Добавили {sku}')
                     try:
