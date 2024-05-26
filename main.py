@@ -205,7 +205,7 @@ def get_reels(SEARCH_QUERY):
             response = reels_response_parse(json, SEARCH_QUERY)
         except:
             response['has_more'] = False
-
+        sleep(5)
         paging_token += 4
 
 start = 0
@@ -221,11 +221,6 @@ with open('requests.csv',encoding='utf-8-sig') as file:
                 print(e)
                 continue
             if card != None:
-                while True:
-                    try:
-                        get_reels(str(sku))
-                        break
-                    except Exception as e:
-                        print("Insta error:",e)
-                        sleep(3600)
+                get_reels(str(sku))
+        sleep(30)
                        
