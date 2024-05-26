@@ -215,18 +215,15 @@ with open('requests.csv',encoding='utf-8-sig') as file:
     for i in range(start,end):
         sku,count = rows[i][0].split(';')[0], rows[i][0].split(';')[1]
         if(int(sku) > 999999 and int(sku) < 1000000000):
-            if not database.is_sku_added(sku):
-                try:
-                    card = sku_info(sku=sku,count=count)
-                except Exception as e:
-                    continue
-                if card != None:
-                    while True:
-                        try:
-                            get_reels(str(sku))
-                            break
-                        except Exception as e:
-                            sleep(3600)
-                            print("Insta error:",e)
-            else:
-                print(f'{sku} в таблице')
+            try:
+                card = sku_info(sku=sku,count=count)
+            except Exception as e:
+                continue
+            if card != None:
+                while True:
+                    try:
+                        get_reels(str(sku))
+                        break
+                    except Exception as e:
+                        sleep(3600)
+                        print("Insta error:",e)
