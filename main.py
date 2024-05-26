@@ -31,6 +31,7 @@ def sku_info(sku, count):
     card_info = {}
     card_info['request_count'] = count
     if len(data['data']['products']) == 0: return None
+    else: return True
     card_info['feedbacks'] = data['data']['products'][0]['feedbacks']
     try: card_info['cat'] = cat_list[data['data']['products'][0]['subjectParentId']]
     except: card_info['cat'] = ""
@@ -220,10 +221,12 @@ with open('requests.csv',encoding='utf-8-sig') as file:
                 except Exception as e:
                     continue
                 if card != None:
-                    print(f'Добавили {sku}')
-                    try:
-                        get_reels(str(sku))
-                    except Exception as e:
-                        print("Insta error:",e)
+                    while True:
+                        try:
+                            get_reels(str(sku))
+                            break
+                        except Exception as e:
+                            sleep(3600)
+                            print("Insta error:",e)
             else:
                 print(f'{sku} в таблице')
