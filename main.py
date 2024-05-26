@@ -218,6 +218,7 @@ with open('requests.csv',encoding='utf-8-sig') as file:
             try:
                 card = sku_info(sku=sku,count=count)
             except Exception as e:
+                print(e)
                 continue
             if card != None:
                 while True:
@@ -225,5 +226,6 @@ with open('requests.csv',encoding='utf-8-sig') as file:
                         get_reels(str(sku))
                         break
                     except Exception as e:
-                        sleep(3600)
                         print("Insta error:",e)
+                        sleep(3600)
+                       
