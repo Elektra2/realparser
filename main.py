@@ -155,13 +155,18 @@ def reels_response_parse(response, SEARCH_QUERY):
         user_info.update(get_additional_user_info(clip["media"]["user"]["id"]))
         sleep(1)
         user_info.update(get_last_user_publications_info(clip["media"]["user"]["id"]))
-
+        try:
+            reshape = clip["media"]["reshare_count"]
+            print(SEARCH_QUERY,"пересылок", reshape)
+        except:
+            reshape = 0
+            print(SEARCH_QUERY,"пересылок 0")
         result_object = {
             "short_url": "https://www.instagram.com/reels/" + clip["media"]["code"],
             "video_urls": raw_videos,
             "likes": clip["media"]["like_count"],
             "comments": clip["media"]["comment_count"],
-            "reshare": clip["media"]["reshare_count"],
+            "reshare": reshape,
             "views": clip['media']['play_count'],
             "user": user_info
         }
