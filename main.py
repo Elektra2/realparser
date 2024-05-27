@@ -119,6 +119,7 @@ def get_last_user_publications_info(user_id):
 
 def reels_response_parse(response, SEARCH_QUERY):
     global parsed_items
+    print(response)
     if len(response["reels_serp_modules"]) == 0: 
         response["has_more"] = False
         return response
@@ -210,7 +211,7 @@ def get_reels(SEARCH_QUERY):
         paging_token += 4
 
 start = 0
-end = 90000
+end = 8000
 with open('requests.csv',encoding='utf-8-sig') as file:
     rows = list(csv.reader(file))
     for i in range(start,end):
