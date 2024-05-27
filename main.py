@@ -9,7 +9,7 @@ from database import Database
 AUTH = {
     "device_id": "a53f5e06-4663-4091-b046-85a9e5c05299",
     "user_agent": "Instagram 331.0.0.37.90 Android (26/8.0.0; 480dpi; 1080x1920; samsung; SM-G935F; hero2lte; samsungexynos8890; ru_RU; 598808576)",
-    "authorization": "Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjY0NTg1NTEzMDIiLCJzZXNzaW9uaWQiOiI2NjQ1ODU1MTMwMiUzQUFHVUM4bDNkcHRRd0h4JTNBMTMlM0FBWWZhZ0w1NWg0cWlMdlRQbGRxN1c0NV9JWHBXUmY0ZGtKeUtDUUVYLVEifQ=="
+    "authorization": "Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjcwNDM0MzI1ODciLCJzZXNzaW9uaWQiOiI2NzA0MzQzMjU4NyUzQVZsVEwzUHFhOTE2RW9EJTNBMTMlM0FBWWVUeXAzbkNRanFVMmxGcnJ3el9taDVxOTFVeVNUOWpWTEI4T0FPWncifQ=="
 }
 # a53f5e06-4663-4091-b046-85a9e5c05299
 # Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjY0MzMyNTEzODMiLCJzZXNzaW9uaWQiOiI2NjQzMzI1MTM4MyUzQXpGMnpnOVo5cll1aEFnJTNBMjYlM0FBWWVENjdXNzFJMjVlUVVJZm1kdmV5TlJubm9YVDZWZDdSYURfS1J3MmcifQ==
@@ -210,8 +210,8 @@ def get_reels(SEARCH_QUERY):
         sleep(1)
         paging_token += 4
 
-start = 16000
-end = 22000
+start = 8000
+end = 16000
 with open('requests.csv',encoding='utf-8-sig') as file:
     rows = list(csv.reader(file))
     for i in range(start,end):
