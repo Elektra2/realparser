@@ -157,10 +157,8 @@ def reels_response_parse(response, SEARCH_QUERY):
         user_info.update(get_last_user_publications_info(clip["media"]["user"]["id"]))
         try:
             reshape = clip["media"]["reshare_count"]
-            print(SEARCH_QUERY,"пересылок", reshape)
         except:
             reshape = 0
-            print(SEARCH_QUERY,"пересылок 0")
         result_object = {
             "short_url": "https://www.instagram.com/reels/" + clip["media"]["code"],
             "video_urls": raw_videos,
@@ -232,5 +230,6 @@ with open('requests.csv',encoding='utf-8-sig') as file:
                 continue
             if card != None:
                 get_reels(str(sku))
+                print(i)
                 sleep(1)
                        
