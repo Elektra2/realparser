@@ -120,7 +120,6 @@ def get_last_user_publications_info(user_id):
 
 def reels_response_parse(response, SEARCH_QUERY):
     global parsed_items
-    print(response)
     if len(response["reels_serp_modules"]) == 0: 
         response["has_more"] = False
         return response
