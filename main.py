@@ -7,9 +7,9 @@ import csv
 from database import Database
 
 AUTH = {
-    "device_id": "e8e0a8de-678b-41dc-becd-ace207ada325",
+    "device_id": "a53f5e06-4663-4091-b046-85a9e5c05299",
     "user_agent": "Instagram 331.0.0.37.90 Android (26/8.0.0; 480dpi; 1080x1920; samsung; SM-G935F; hero2lte; samsungexynos8890; ru_RU; 598808576)",
-    "authorization": "Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjY4NjY0MDI5NzYiLCJzZXNzaW9uaWQiOiI2Njg2NjQwMjk3NiUzQU5HYUoxbnZseVpIM0l2JTNBMjAlM0FBWWZTQ05VRnJQYnFKZkNmQXdwR05aU3lDcEZNMkYybmwyYklpRUZiY3cifQ=="
+    "authorization": "Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjY0MzMyNTEzODMiLCJzZXNzaW9uaWQiOiI2NjQzMzI1MTM4MyUzQXpGMnpnOVo5cll1aEFnJTNBMjYlM0FBWWVENjdXNzFJMjVlUVVJZm1kdmV5TlJubm9YVDZWZDdSYURfS1J3MmcifQ=="
 }
 # a53f5e06-4663-4091-b046-85a9e5c05299
 # Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjY0MzMyNTEzODMiLCJzZXNzaW9uaWQiOiI2NjQzMzI1MTM4MyUzQXpGMnpnOVo5cll1aEFnJTNBMjYlM0FBWWVENjdXNzFJMjVlUVVJZm1kdmV5TlJubm9YVDZWZDdSYURfS1J3MmcifQ==
@@ -19,6 +19,7 @@ session.headers.update({
     "User-Agent": AUTH["user_agent"],
     "Authorization": AUTH["authorization"],
     "x-ig-device-id": AUTH["device_id"]
+
 })
 result = []
 parsed_items = 0
@@ -128,7 +129,9 @@ def reels_response_parse(response, SEARCH_QUERY):
         print("Получаем информацию о {}, пользователь: {}. Собрано: {}".format("https://www.instagram.com/reels/" + clip["media"]["code"], clip["media"]["user"]["username"], parsed_items))
         if database.is_reel_added("https://www.instagram.com/reels/" + clip["media"]["code"]):
             print("ДУБЛИКАТ! ЕСТЬ В БД: " + "https://www.instagram.com/reels/" + clip["media"]["code"])
-            continue
+            response["has_more"] = False
+            return response
+            #continue
         result_short_urls.append("https://www.instagram.com/reels/" + clip["media"]["code"])
 
         raw_videos = []
@@ -210,7 +213,7 @@ def get_reels(SEARCH_QUERY):
         sleep(1)
         paging_token += 4
 
-start = 8000
+start = 0
 end = 90000
 with open('requests.csv',encoding='utf-8-sig') as file:
     rows = list(csv.reader(file))

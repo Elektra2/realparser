@@ -9,7 +9,7 @@ class Database:
             port=6432
             dbname=reels_parser
             user=reels_parser
-            password= KLJddwe32FGV
+            password=KLJddwe32FGV
             target_session_attrs=read-write
         """)
         self.cursor = self._connection.cursor()
