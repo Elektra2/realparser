@@ -9,9 +9,9 @@ from database import Database
 AUTH = {
     "device_id": "a53f5e06-4663-4091-b046-85a9e5c05299",
     "user_agent": "Instagram 331.0.0.37.90 Android (26/8.0.0; 480dpi; 1080x1920; samsung; SM-G935F; hero2lte; samsungexynos8890; ru_RU; 598808576)",
-    "authorization": "Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjY0MzMyNTEzODMiLCJzZXNzaW9uaWQiOiI2NjQzMzI1MTM4MyUzQXpGMnpnOVo5cll1aEFnJTNBMjYlM0FBWWVENjdXNzFJMjVlUVVJZm1kdmV5TlJubm9YVDZWZDdSYURfS1J3MmcifQ=="
+    "authorization": "Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjY0NDg3NTA0MTMiLCJzZXNzaW9uaWQiOiI2NjQ0ODc1MDQxMyUzQWxaQVJ4bkRpenVHdTZrJTNBMyUzQUFZYzBNS1BsRXl3S1ctUTdqQ29rZ1MybHNJRWRINGNaVFdJTDlDdENQZyJ9"
 }
-
+# Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjY0MzMyNTEzODMiLCJzZXNzaW9uaWQiOiI2NjQzMzI1MTM4MyUzQXpGMnpnOVo5cll1aEFnJTNBMjYlM0FBWWVENjdXNzFJMjVlUVVJZm1kdmV5TlJubm9YVDZWZDdSYURfS1J3MmcifQ==
 database = Database()
 session = requests.Session()
 session.headers.update({
@@ -184,7 +184,8 @@ def get_reels(SEARCH_QUERY):
         "query": SEARCH_QUERY
     }).json(),SEARCH_QUERY)
 
-
+    sleep(1)
+    
     paging_token = 4
     while response["has_more"]:
         try:
@@ -205,7 +206,7 @@ def get_reels(SEARCH_QUERY):
             response = reels_response_parse(json, SEARCH_QUERY)
         except:
             response['has_more'] = False
-        sleep(5)
+        sleep(1)
         paging_token += 4
 
 start = 0
@@ -222,5 +223,5 @@ with open('requests.csv',encoding='utf-8-sig') as file:
                 continue
             if card != None:
                 get_reels(str(sku))
-        sleep(30)
+        sleep(5)
                        
