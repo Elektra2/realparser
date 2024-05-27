@@ -7,10 +7,11 @@ import csv
 from database import Database
 
 AUTH = {
-    "device_id": "a53f5e06-4663-4091-b046-85a9e5c05299",
+    "device_id": "ca59b2ad-2ed6-45df-8619-8699f848c862",
     "user_agent": "Instagram 331.0.0.37.90 Android (26/8.0.0; 480dpi; 1080x1920; samsung; SM-G935F; hero2lte; samsungexynos8890; ru_RU; 598808576)",
     "authorization": "Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjY0NDg3NTA0MTMiLCJzZXNzaW9uaWQiOiI2NjQ0ODc1MDQxMyUzQWxaQVJ4bkRpenVHdTZrJTNBMyUzQUFZYzBNS1BsRXl3S1ctUTdqQ29rZ1MybHNJRWRINGNaVFdJTDlDdENQZyJ9"
 }
+# a53f5e06-4663-4091-b046-85a9e5c05299
 # Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjY0MzMyNTEzODMiLCJzZXNzaW9uaWQiOiI2NjQzMzI1MTM4MyUzQXpGMnpnOVo5cll1aEFnJTNBMjYlM0FBWWVENjdXNzFJMjVlUVVJZm1kdmV5TlJubm9YVDZWZDdSYURfS1J3MmcifQ==
 database = Database()
 session = requests.Session()
