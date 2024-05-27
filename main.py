@@ -9,7 +9,7 @@ from database import Database
 AUTH = {
     "device_id": "a53f5e06-4663-4091-b046-85a9e5c05299",
     "user_agent": "Instagram 331.0.0.37.90 Android (26/8.0.0; 480dpi; 1080x1920; samsung; SM-G935F; hero2lte; samsungexynos8890; ru_RU; 598808576)",
-    "authorization": "Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjY2NTgxMjkyOTQiLCJzZXNzaW9uaWQiOiI2NjY1ODEyOTI5NCUzQWFuWk5wWWNrZThlOFpGJTNBMjYlM0FBWWR1TEhLNWRlN01HaUNHWHB3VE44dGZHVW9aVkxtVTlCZ1RrYXZuV2cifQ=="
+    "authorization": "Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjY0MzMyNTEzODMiLCJzZXNzaW9uaWQiOiI2NjQzMzI1MTM4MyUzQXpGMnpnOVo5cll1aEFnJTNBMjYlM0FBWWVENjdXNzFJMjVlUVVJZm1kdmV5TlJubm9YVDZWZDdSYURfS1J3MmcifQ=="
 }
 # a53f5e06-4663-4091-b046-85a9e5c05299
 # Bearer IGT:2:eyJkc191c2VyX2lkIjoiNjY0MzMyNTEzODMiLCJzZXNzaW9uaWQiOiI2NjQzMzI1MTM4MyUzQXpGMnpnOVo5cll1aEFnJTNBMjYlM0FBWWVENjdXNzFJMjVlUVVJZm1kdmV5TlJubm9YVDZWZDdSYURfS1J3MmcifQ==
