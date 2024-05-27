@@ -239,6 +239,7 @@ with open('requests.csv',encoding='utf-8-sig') as file:
                     print(i)
                 except:
                     sleep(10)
+                    print('Замена аккаунта')
                     session.headers.update({
                     "Authorization": auth_tokens[random.randint(len(auth_tokens))]})
                 sleep(1)
