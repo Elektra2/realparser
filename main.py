@@ -3,6 +3,7 @@ from json import loads
 from time import sleep
 import re
 import csv
+import random
 
 from database import Database
 
@@ -27,6 +28,10 @@ result_short_urls = []
 cat_list = {}
 with open('categori.txt', encoding='UTF-8') as file:
     cat_list = eval(file.readline())
+
+auth_tokens = []
+with open('out.txt', encoding='UTF-8') as file:
+    auth_tokens = eval(file.readline())
 
 def sku_info(sku, count):
     data = loads(requests.get(f'https://card.wb.ru/cards/detail?appType=1&curr=rub&dest=-1257786&spp=30&nm={sku}').text)
@@ -216,7 +221,7 @@ def get_reels(SEARCH_QUERY):
         sleep(1)
         paging_token += 4
 
-start = 0
+start = 20000
 end = 90000
 with open('requests.csv',encoding='utf-8-sig') as file:
     rows = list(csv.reader(file))
@@ -229,7 +234,12 @@ with open('requests.csv',encoding='utf-8-sig') as file:
                 print(e)
                 continue
             if card != None:
-                get_reels(str(sku))
-                print(i)
+                try:
+                    get_reels(str(sku))
+                    print(i)
+                except:
+                    sleep(10)
+                    session.headers.update({
+                    "Authorization": auth_tokens[random.randint(len(auth_tokens))]})
                 sleep(1)
                        
