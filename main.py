@@ -227,5 +227,5 @@ with open('requests.csv',encoding='utf-8-sig') as file:
                 continue
             if card != None:
                 get_reels(str(sku))
-        sleep(5)
+        sleep(1)
                        
