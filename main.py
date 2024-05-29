@@ -38,7 +38,6 @@ def sku_info(sku, count):
     card_info = {}
     card_info['request_count'] = count
     if len(data['data']['products']) == 0: return None
-    else: return True
     card_info['feedbacks'] = data['data']['products'][0]['feedbacks']
     try: card_info['cat'] = cat_list[data['data']['products'][0]['subjectParentId']]
     except: card_info['cat'] = ""
@@ -134,9 +133,9 @@ def reels_response_parse(response, SEARCH_QUERY):
         print("Получаем информацию о {}, пользователь: {}. Собрано: {}".format("https://www.instagram.com/reels/" + clip["media"]["code"], clip["media"]["user"]["username"], parsed_items))
         if database.is_reel_added("https://www.instagram.com/reels/" + clip["media"]["code"]):
             print("ДУБЛИКАТ! ЕСТЬ В БД: " + "https://www.instagram.com/reels/" + clip["media"]["code"])
-            response["has_more"] = False
-            return response
-            #continue
+            # response["has_more"] = False
+            # return response
+            continue
         result_short_urls.append("https://www.instagram.com/reels/" + clip["media"]["code"])
 
         raw_videos = []
