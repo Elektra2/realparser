@@ -220,7 +220,7 @@ def get_reels(SEARCH_QUERY):
         sleep(1)
         paging_token += 4
 
-start = 2514
+start = 0
 end = 90000
 with open('requests.csv',encoding='utf-8-sig') as file:
     rows = list(csv.reader(file))
